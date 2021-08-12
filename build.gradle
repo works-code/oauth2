@@ -1,0 +1,40 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.3'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.code'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // DB 쿼리 작성을 쉽게 하기 위함
+    implementation 'org.springframework.boot:spring-boot-starter-security' // 스프링 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // 타임리프로 쉽게 웹 화면 구성을 위함
+    implementation 'org.springframework.boot:spring-boot-starter-web' // mvc 웹 구조 사용을 위함
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' // 타임리프 화면에서 스프링 시큐리티 사용을 위함
+    implementation group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.3.4.RELEASE' // spring oauth 2.0
+    implementation 'org.apache.commons:commons-lang3:3.8' // 유틸리티 사용을 위함
+    implementation 'com.konghq:unirest-java:3.7.02' // http 통신을 쉽게 하기 위함
+    compileOnly 'org.projectlombok:lombok' // 변수 get, set 함수 편리하게 만들기 위함
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'mysql:mysql-connector-java' // mysql 사용
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+    useJUnitPlatform()
+}

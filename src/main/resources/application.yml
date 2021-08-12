@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oauth2?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: root@1234
+    initialization-mode: never # resource 에 있는 schema.sql 을 실행 (기본값: always, 생성안함: never)
+  jpa: # DB 쿼리 작성 없이 코드로 쉽게 데이터 처리를 위함.
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+  main:
+    allow-bean-definition-overriding: true # userDetailService 기존 스프링 제공 함수 안쓰고 정의 함수로 바꾸기 위한 설정
+server:
+  port: 8081 # 사용 포트

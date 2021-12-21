@@ -13,3 +13,7 @@ spring:
     allow-bean-definition-overriding: true # userDetailService 기존 스프링 제공 함수 안쓰고 정의 함수로 바꾸기 위한 설정
 server:
   port: 8081 # 사용 포트
+  tomcat:
+    accesslog:
+      enabled: true # access 로그 추가
+    basedir: .

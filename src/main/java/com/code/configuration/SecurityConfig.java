@@ -14,7 +14,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable() // csrf 공격을 막기 위해 state 값을 전달 받지 않는다
-                .formLogin() // 기본 제공하는 로그인 화면 사용
+                .formLogin() // 로그인 페이지 설정
+                .loginPage("/oauth/login")
                 .and()
                 .httpBasic(); // http 통신으로 basic auth를 사용 할 수 있다. (ex: Authorization: Basic bzFbdGfmZrptWY30YQ==)
     }

@@ -25,6 +25,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web' // mvc 웹 구조 사용을 위함
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' // 타임리프 화면에서 스프링 시큐리티 사용을 위함
     implementation group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.3.4.RELEASE' // spring oauth 2.0
+    implementation 'org.springframework.security:spring-security-jwt:1.1.1.RELEASE' // jwt 토큰 방식을 쓰기위해 필요한 라이브러리
     implementation 'org.apache.commons:commons-lang3:3.8' // 유틸리티 사용을 위함
     implementation 'com.konghq:unirest-java:3.7.02' // http 통신을 쉽게 하기 위함
     compileOnly 'org.projectlombok:lombok' // 변수 get, set 함수 편리하게 만들기 위함

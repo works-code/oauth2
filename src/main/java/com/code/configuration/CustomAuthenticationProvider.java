@@ -1,5 +1,6 @@
-package com.code.service;
+package com.code.configuration;
 
+import com.code.service.UserDetailService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if(!StringUtils.equals(password, StringUtils.replace(info.getPassword(), "{noop}",""))){
             throw new UsernameNotFoundException("please password check");
         }
-        return new UsernamePasswordAuthenticationToken(username,password,info.getAuthorities());
+        // principal 정보는 jwt 토큰 생성시 추가정보 넣는데 사용하오니 필요한 정보는 여기서 넣어주세요.
+        return new UsernamePasswordAuthenticationToken(info,password,info.getAuthorities());
     }
 }

@@ -2,7 +2,6 @@ package com.code.configuration;
 
 import com.code.handler.CustomFailHandler;
 import com.code.handler.CustomSuccessHandler;
-import com.code.service.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

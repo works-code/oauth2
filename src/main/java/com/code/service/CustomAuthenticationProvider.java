@@ -29,14 +29,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
-        log.error("## => {} | {}", username, password);
         UserDetails info = userDetailService.loadUserByUsername(username);
+        log.error("## => {} | {} | {}", username, password, info.getAuthorities());
         if(ObjectUtils.isEmpty(info)){
             throw new UsernameNotFoundException("user not found");
         }
         if(!StringUtils.equals(password, StringUtils.replace(info.getPassword(), "{noop}",""))){
             throw new UsernameNotFoundException("please password check");
         }
-        return new UsernamePasswordAuthenticationToken(username,password,authentication.getAuthorities());
+        return new UsernamePasswordAuthenticationToken(username,password,info.getAuthorities());
     }
 }

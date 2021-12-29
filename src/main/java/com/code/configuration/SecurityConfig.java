@@ -1,5 +1,7 @@
 package com.code.configuration;
 
+import com.code.handler.CustomFailHandler;
+import com.code.handler.CustomSuccessHandler;
 import com.code.service.CustomAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +11,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @EnableWebSecurity // 웹보안 활성화
 @Configuration
@@ -22,6 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable() // csrf 공격을 막기 위해 state 값을 전달 받지 않는다
                 .formLogin() // 로그인 페이지 설정
                 .loginPage("/oauth/login")
+                .failureHandler(failureHandler()) // 로그인 실패 custom
+                .successHandler(successHandler()) // 로그인 성공 custom
                 .and()
                 .httpBasic(); // http 통신으로 basic auth를 사용 할 수 있다. (ex: Authorization: Basic bzFbdGfmZrptWY30YQ==)
     }
@@ -42,4 +48,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(customAuthenticationProvider);
     }
+
+    @Bean
+    public AuthenticationFailureHandler failureHandler(){
+        return new CustomFailHandler();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler successHandler(){
+        return new CustomSuccessHandler();
+    }
+
 }

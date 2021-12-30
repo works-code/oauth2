@@ -11,9 +11,17 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   main:
     allow-bean-definition-overriding: true # userDetailService 기존 스프링 제공 함수 안쓰고 정의 함수로 바꾸기 위한 설정
+  session:
+    store-type: redis # session 을 redis 로 설정
+  redis:
+    host: localhost
+    port: 6379
 server:
   port: 8081 # 사용 포트
   tomcat:
     accesslog:
       enabled: true # access 로그 추가
     basedir: .
+#  servlet:
+#    session:
+#      timeout: 10 # 세션 저장소(redis) 따로 지정 안할시 해당 설정으로 세션 시간 설정 / 기본 30분이며 60s 미만 설정시 60s로 된다.

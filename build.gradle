@@ -28,6 +28,10 @@ dependencies {
     implementation 'org.springframework.security:spring-security-jwt:1.1.1.RELEASE' // jwt 토큰 방식을 쓰기위해 필요한 라이브러리
     implementation 'org.apache.commons:commons-lang3:3.8' // 유틸리티 사용을 위함
     implementation 'com.konghq:unirest-java:3.7.02' // http 통신을 쉽게 하기 위함
+    // spring에서 redis에 대한 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    // spring에서 redis를 session storage로 사용하기 위한 의존성
+    implementation 'org.springframework.session:spring-session-data-redis'
     compileOnly 'org.projectlombok:lombok' // 변수 get, set 함수 편리하게 만들기 위함
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java' // mysql 사용
